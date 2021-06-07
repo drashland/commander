@@ -1,28 +1,29 @@
-import { BaseCommand, ILogger, Line, SubcommandOption } from "../mod.ts";
+import { Line, SubcommandOption } from "../mod.ts";
+import { BaseCommand } from "./base_command.ts";
 
 /**
  * A class that represents a subcommand as an object.
  */
-export class Subcommand extends BaseCommand {
+export class Maincommand extends BaseCommand {
   /**
-   * This subcommand's description.
+   * This maincommand's description.
    */
   public description = "";
 
   /**
-   * This subcommand's name.
+   * This maincommand's name.
    */
   public name = "";
+
+  /**
+   * This maincommand's signature. For example, "run [arg1] [arg2]".
+   */
+  public signature = "";
 
   /**
    * This subcommand's options.
    */
   public options: typeof SubcommandOption[] = [];
-
-  /**
-   * This subcommand's signature. For example, "run [arg1] [arg2]".
-   */
-  public signature = "";
 
   //////////////////////////////////////////////////////////////////////////////
   // FILE MARKER - CONSTRUCTOR /////////////////////////////////////////////////
@@ -65,7 +66,7 @@ export class Subcommand extends BaseCommand {
     if (this.initiated_options.length > 0) {
       help += "OPTIONS\n\n";
       this.initiated_options.forEach(
-        (option: SubcommandOption) => {
+        (option) => {
           help += `    ${option.name}\n`;
           help += `        ${option.description}\n`;
         },
